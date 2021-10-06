@@ -1,38 +1,27 @@
 // Core
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 // Components
 import { ErrorBoundary } from '../../components';
 
-// Redux
-import { useCounter } from '../../../bus/counter';
-import { useMessages } from '../../../bus/messages';
+// Components
+import { Header } from '../../components/Header';
+import { Images } from '../../components/Images';
+import { Table } from '../../components/Table';
 
 // Elements
-import { Button } from '../../elements';
+import { ModalButton } from '../../elements/ModalButton';
 
-// Styles
-import { Container } from './styles';
 
 const Main: FC = () => {
-    const [ amount, setAmount ] = useState<number>(0);
-    const { counterState, increment, decrement, incrementByAmount } = useCounter();
-    const { messages, loading } = useMessages();
-
-    console.log('🚀', messages);
-    console.log('🚀', loading);
-
     return (
-        <Container>
-            counterState: {counterState}
-            <Button onClick = { () => void increment() }>+</Button>
-            <Button onClick = { () => void decrement() }>-</Button>
-            <input
-                value = { amount }
-                onChange = { (event) => void setAmount(parseInt(event.target.value, 10)) }
-            />
-            <Button onClick = { () => void incrementByAmount(amount) }>incrementByAmount</Button>
-        </Container>
+        <div>
+            <Header/>
+            <Table/>
+            <ModalButton/>
+            <Images/>
+        </div>
+
     );
 };
 
